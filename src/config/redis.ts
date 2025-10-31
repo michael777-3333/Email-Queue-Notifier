@@ -1,4 +1,6 @@
 import Redis from 'ioredis';
+import dotenv from 'dotenv'
+dotenv.config();
 
 let redis: Redis | null = null;
 
@@ -6,6 +8,7 @@ export const initRedis = (): void => {
   redis = new Redis({
     host: process.env.REDIS_HOST || '127.0.0.1',
     port: parseInt(process.env.REDIS_PORT || '6379') as number,
+    password: process.env.REDIS_PASSWORD,
     lazyConnect: true,
     maxRetriesPerRequest: null
   });
@@ -17,7 +20,10 @@ export const initRedis = (): void => {
 
 export const getRedis = (): Redis => {
   if (!redis) {
-    throw new Error('Redis not initialized. Call initRedis() first.');
+    initRedis();
+  }
+  if (!redis) {
+    throw new Error('Failed to initialize Redis client');
   }
   return redis;
 };

@@ -1,8 +1,11 @@
-import { Queue, Worker } from 'bullmq';
+import { Queue } from 'bullmq';
 
-import { getRedis } from './redis.js';
+import { getRedis } from './redis.ts';
+import type { EmailJobData } from '../interfaces/job.interface.ts';
 
 const connection = getRedis();
 
-export const createQueue = (name: string) => new Queue(name, { connection });
-export const createWorker = (name: string, processor: any) => new Worker(name, processor, { connection });
+export const emailQueue = new Queue<EmailJobData>('emailQueue', {
+  connection: connection,
+});
+
