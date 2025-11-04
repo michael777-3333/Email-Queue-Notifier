@@ -1,6 +1,7 @@
 import express from 'express';
 import http from 'http'
 import {Server} from 'socket.io'
+import indexRoutes from './modules/index.routes.ts';
 
 const app = express();
 
@@ -9,7 +10,7 @@ const io = new Server(server,{cors:{origin:'*'}})
 
 
 app.use(express.json());
-// app.use('/api', routes);
+app.use('/api', indexRoutes);
 
 io.on('connection', socket => {
     console.log('🟢 User connected');

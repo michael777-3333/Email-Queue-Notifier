@@ -8,13 +8,13 @@ export const connectDB = async (): Promise<void> => {
     const mongoUri = process.env.DATABASE_URL as string;
 
     if (!mongoUri) {
-      throw new Error('❌ No se encontró MONGO_URI en el archivo .env');
+      throw new Error('No se encontró MONGO_URI en el archivo .env');
     }
 
     await mongoose.connect(mongoUri);
-    console.log('✅ Conectado a MongoDB');
+    console.log('Conectado a MongoDB');
   } catch (error) {
-    console.error('❌ Error al conectar a MongoDB:', error);
+    console.error('Error al conectar a MongoDB:', error);
     process.exit(1);
   }
 };
