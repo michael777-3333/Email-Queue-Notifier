@@ -18,7 +18,7 @@ io.on('connection', socket => {
   });
 
 app.get('/', (req, res) => {
-    res.send('Servidor activo con Socket.io + BullMQ 🧠');
+    res.send('Servidor activo');
   });
   
 export { app, server };

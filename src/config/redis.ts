@@ -13,9 +13,9 @@ export const initRedis = (): void => {
     maxRetriesPerRequest: null
   });
 
-  redis.on('connect', () => console.log('✅ Redis connected'));
-  redis.on('error', (err: any) => console.error('❌ Redis error', err));
-  redis.on('ready', () => console.log('🚀 Redis ready'));
+  redis.on('connect', () => console.log('Redis connected'));
+  redis.on('error', (err: any) => console.error('Redis error', err));
+  redis.on('ready', () => console.log('Redis ready'));
 };
 
 export const getRedis = (): Redis => {
